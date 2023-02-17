@@ -1,8 +1,11 @@
 
 .DEFAULT: run
 
-run:	
+lin_run:	
 	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/01_model_design.py
+
+ag_run:	
+	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/04_AttentionGRU_model_design.py
 
 tune: 
 	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/02_tune.py

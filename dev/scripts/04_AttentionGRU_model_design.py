@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     configs = [
         LinearConfig(
-            input=13, output=20, tunedir=presets.logdir, h1=10, h2=100, dropout=0.5
+            input=13, output=20, tunedir=presets.logdir, h1=100, h2=10, dropout=0.5
         ),
     ]
 
@@ -26,7 +26,7 @@ if __name__ == "__main__":
         model = Linear(config.dict())  # type: ignore
 
         trainedmodel = trainloop(
-            epochs=200,
+            epochs=50,
             model=model,  # type: ignore
             optimizer=torch.optim.Adam,
             learning_rate=1e-3,

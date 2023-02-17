@@ -50,8 +50,20 @@ class LinearConfig(BaseSearchSpace):
     h2: int
     dropout: float
 
+# verder aanpassen
+class AttentionGRUConfig(BaseSearchSpace):
+    h1: int
+    h2: int
+    dropout: float
+
 
 class LinearSearchSpace(BaseSearchSpace):
     h1: Union[int, SAMPLE_INT] = tune.randint(16, 128)
     h2: Union[int, SAMPLE_INT] = tune.randint(16, 128)
     dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.0, 0.5)
+
+
+class AttentionGRU(BaseSearchSpace):
+    hidden_size: Union[int, SAMPLE_INT] = tune.randint(16, 128)
+    dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.0, 0.3)
+    num_layers: Union[int, SAMPLE_INT] = tune.randint(2, 5)
