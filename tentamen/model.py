@@ -20,12 +20,12 @@ class Linear(nn.Module):
         super().__init__()
 
         self.encoder = nn.Sequential(
-            nn.Linear(config["input"], config["h1"]),
+            nn.Linear(config["input_size"], config["h1"]),
             nn.ReLU(),
             nn.Linear(config["h1"], config["h2"]),
             nn.Dropout(config["dropout"]),
             nn.ReLU(),
-            nn.Linear(config["h2"], config["output"]),
+            nn.Linear(config["h2"], config["output_size"]),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:

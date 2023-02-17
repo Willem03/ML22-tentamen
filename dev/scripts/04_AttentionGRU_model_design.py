@@ -13,18 +13,26 @@ if __name__ == "__main__":
 
     trainstreamer, teststreamer = datasets.get_arabic(presets)
 
-    from tentamen.model import Linear
-    from tentamen.settings import LinearConfig
+    from tentamen.model import AttentionGRU
+    from tentamen.settings import AttentionGRUConfig
 
-    configs = [
-        LinearConfig(
-            input=13, output=20, tunedir=presets.logdir, h1=100, h2=10, dropout=0.5
+    configs_AttGRU = [
+        AttentionGRUConfig(
+            input_size=13,
+            output_size=20,
+            hidden_size=64,
+            batch_size=256,
+            embed_dim=64,
+            tunedir=presets.logdir,
+            num_layers=2,
+            dropout=0.1,
+            num_heads=4,
         ),
-    ]
+    ]            
 
-    for config in configs:
-        model = Linear(config.dict())  # type: ignore
-
+    for config in configs_AttGRU:
+        model = AttentionGRU(config.dict()) # type ignore
+    
         trainedmodel = trainloop(
             epochs=50,
             model=model,  # type: ignore
@@ -39,7 +47,7 @@ if __name__ == "__main__":
             eval_steps=len(teststreamer),
         )
 
-        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-        path = presets.modeldir / (timestamp + presets.modelname)
-        logger.info(f"save model to {path}")
-        torch.save(trainedmodel, path)
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    path = presets.modeldir / (timestamp + presets.modelname)
+    logger.info(f"save model to {path}")
+    torch.save(trainedmodel, path)

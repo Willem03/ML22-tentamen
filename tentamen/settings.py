@@ -37,8 +37,8 @@ presets = Settings(
 
 
 class BaseSearchSpace(BaseModel):
-    input: int
-    output: int
+    input_size: int
+    output_size: int
     tunedir: Path
 
     class Config:
@@ -50,11 +50,14 @@ class LinearConfig(BaseSearchSpace):
     h2: int
     dropout: float
 
-# verder aanpassen
+
 class AttentionGRUConfig(BaseSearchSpace):
-    h1: int
-    h2: int
     dropout: float
+    hidden_size: int
+    batch_size: int
+    embed_dim: int
+    num_layers: int
+    num_heads: int
 
 
 class LinearSearchSpace(BaseSearchSpace):
