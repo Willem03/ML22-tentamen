@@ -24,8 +24,8 @@ if __name__ == "__main__":
             batch_size=256,
             embed_dim=64,
             tunedir=presets.logdir,
-            num_layers=2,
-            dropout=0.1,
+            num_layers=4,
+            dropout=0.5,
             num_heads=4,
         ),
     ]            
