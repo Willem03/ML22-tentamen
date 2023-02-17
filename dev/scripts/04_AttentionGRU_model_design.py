@@ -20,13 +20,12 @@ if __name__ == "__main__":
         AttentionGRUConfig(
             input_size=13,
             output_size=20,
-            hidden_size=64,
             batch_size=256,
             embed_dim=64,
             tunedir=presets.logdir,
             num_layers=4,
             dropout=0.5,
-            num_heads=4,
+            num_heads=1,
         ),
     ]            
 

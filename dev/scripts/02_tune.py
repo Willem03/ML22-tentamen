@@ -9,8 +9,8 @@ from ray.tune.schedulers.hb_bohb import HyperBandForBOHB
 from ray.tune.search.bohb import TuneBOHB
 
 from tentamen.data import datasets
-from tentamen.model import Accuracy, Linear
-from tentamen.settings import LinearSearchSpace, presets
+from tentamen.model import Accuracy, AttentionGRU
+from tentamen.settings import AttentionGRUSearchSpace, presets
 from tentamen.train import trainloop
 
 
@@ -20,10 +20,10 @@ def train(config: Dict) -> None:
     with FileLock(datadir / ".lock"):
         trainstreamer, teststreamer = datasets.get_arabic(presets)
 
-    model = Linear(config)  # type: ignore
-
+    model = AttentionGRU(config) # type ignore
+    
     trainloop(
-        epochs=30,
+        epochs=50,
         model=model,  # type: ignore
         optimizer=torch.optim.Adam,
         learning_rate=1e-3,
@@ -41,9 +41,9 @@ def train(config: Dict) -> None:
 if __name__ == "__main__":
     ray.init()
 
-    config = LinearSearchSpace(
-        input=13,
-        output=20,
+    config = AttentionGRUSearchSpace(
+        input_size=13,
+        output_size=20,
         tunedir=presets.logdir,
     )
 
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         mode="min",
         progress_reporter=reporter,
         local_dir=config.tunedir,
-        num_samples=20,
+        num_samples=100,
         search_alg=bohb_search,
         scheduler=bohb_hyperband,
         verbose=1,
