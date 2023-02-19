@@ -71,4 +71,3 @@ class AttentionGRUSearchSpace(BaseSearchSpace):
     dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.1, 0.9)
     num_layers: Union[int, SAMPLE_INT] = tune.randint(1, 5)
     batch_size: Union[int, SAMPLE_INT] = tune.randint(128, 1024)
-    

@@ -20,8 +20,8 @@ def train(config: Dict) -> None:
     with FileLock(datadir / ".lock"):
         trainstreamer, teststreamer = datasets.get_arabic(presets)
 
-    model = AttentionGRU(config) # type ignore
-    
+    model = AttentionGRU(config)  # type ignore
+
     trainloop(
         epochs=50,
         model=model,  # type: ignore

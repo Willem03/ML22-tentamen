@@ -28,11 +28,11 @@ if __name__ == "__main__":
             dropout=0.22,
             num_heads=4,
         ),
-    ]            
+    ]
 
     for config in configs_AttGRU:
-        model = AttentionGRU(config.dict()) # type ignore
-    
+        model = AttentionGRU(config.dict())  # type ignore
+
         trainedmodel = trainloop(
             epochs=35,
             model=model,  # type: ignore
