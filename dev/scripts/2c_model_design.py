@@ -20,12 +20,13 @@ if __name__ == "__main__":
         AttentionGRUConfig(
             input_size=13,
             output_size=20,
-            batch_size=256,
-            embed_dim=64,
+            batch_size=951,
+            hidden_size=255,
+            embed_dim=255,
             tunedir=presets.logdir,
-            num_layers=4,
-            dropout=0.5,
-            num_heads=1,
+            num_layers=2,
+            dropout=0.22,
+            num_heads=4,
         ),
     ]            
 
@@ -33,7 +34,7 @@ if __name__ == "__main__":
         model = AttentionGRU(config.dict()) # type ignore
     
         trainedmodel = trainloop(
-            epochs=50,
+            epochs=200,
             model=model,  # type: ignore
             optimizer=torch.optim.Adam,
             learning_rate=1e-3,

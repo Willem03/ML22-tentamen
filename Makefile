@@ -10,6 +10,9 @@ ag_run:
 tune: 
 	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/02_tune.py
 
+2c_run:	
+	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/2c_model_design.py
+
 result: 
 	export PYTHONPATH="$$HOME/code/ML22-tentamen" ;poetry run python dev/scripts/03_result.py
 
