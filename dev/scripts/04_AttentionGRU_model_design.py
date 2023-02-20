@@ -31,7 +31,7 @@ if __name__ == "__main__":
     ]
 
     for config in configs_AttGRU:
-        model = AttentionGRU(config.dict()) # type ignore
+        model = AttentionGRU(config.dict())  # type ignore
 
         trainedmodel = trainloop(
             epochs=50,
